@@ -1,0 +1,8 @@
+{
+    "name": "Генплан Уфы",
+    "short_name": "Генплан Уфы",
+    "start_url": "/?pwa",
+    "display": "fullscreen",
+    "background_color": "#363636",
+    "orientation": "portrait-primary"
+  }

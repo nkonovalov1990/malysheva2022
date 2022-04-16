@@ -1,0 +1,16 @@
+{
+  "name": "ekaterinburg-plan",
+  "version": "1.5.2",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-chabin/ekaterinburg-plan.git"
+  },
+  "author": "Alexander Chabin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a-chabin/ekaterinburg-plan/issues"
+  },
+  "homepage": "https://github.com/a-chabin/ekaterinburg-plan#readme"
+}
