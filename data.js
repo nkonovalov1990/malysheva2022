@@ -1,14 +1,22 @@
 const PLANS = [
   {
-    title: 'Текущий генплан',
-    map: 'plan-old.png',
-    legend: 'legend-old.png',
+    title: 'Исходны план',
+    map: 'current.png',
+    // legend: 'legend-old.png',
+    pinned: true,
     old: true,
+    default: true
   },
   {
-    title: 'Функциональные зоны',
-    map: 'plan-new.png',
-    legend: 'legend-new.png',
-    default: true
+    title: 'Новый план без БРТ',
+    map: 'without-BRT.png',
+    // legend: 'legend-new.png',
+    pinned: true
+  },
+  {
+    title: 'Новый план с БРТ',
+    map: 'with-BRT',
+    // legend: 'legend-new.png',
+    pinned: true
   }
 ];
