@@ -212,12 +212,12 @@ PLANS.filter(({ pinned }) => !pinned)
   })
   .forEach(option => planSelect.appendChild(option));
 
-// planSelect.value = DEFAULT_PLAN_TITLE;
-// planSelect.addEventListener('change', ({ target }) => {
-//   // Remove focus-visible on select after click
-//   planSelect.blur();
-//   setPlan(target.value);
-// });
+planSelect.value = DEFAULT_PLAN_TITLE;
+planSelect.addEventListener('change', ({ target }) => {
+  // Remove focus-visible on select after click
+  planSelect.blur();
+  setPlan(target.value);
+});
 
 planSwitchers.forEach(button => {
   const unactiveSwitchers = () => planSwitchers.forEach(
@@ -231,8 +231,8 @@ planSwitchers.forEach(button => {
     unactiveSwitchers();
     button.classList.add('map-toggle__button_active');
 
-    // planSelect.disabled = isPlanOld;
-    // planSelect.value = DEFAULT_PLAN_TITLE;
+    planSelect.disabled = isPlanOld;
+    planSelect.value = DEFAULT_PLAN_TITLE;
     
     // setPlan(planTitle);
   });
