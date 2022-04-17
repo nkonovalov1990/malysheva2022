@@ -1,22 +1,22 @@
 const PLANS = [
   {
-    title: 'Новый план c БРТ',
-    map: 'with-BRT.png',
-    // legend: 'functional-zones.legend.png',
-    pinned: true,
+    title: 'Новый план с БРТ',
+    map: 'with-BRT.plan.png',
+    legend: 'functional-zones.legend.png',
+    // pinned: true,
     default: true
   },
   {
     title: 'Новый план без БРТ',
-    map: 'without-BRT.png',
-    // legend: 'functional-zones.legend.png',
-    pinned: true
+    map: 'without-BRT.plan.png',
+    legend: 'functional-zones.legend.png',
+    // pinned: true
   },
   {
     title: 'Исходный план',
-    map: 'current.jpg',
-    // legend: 'old.legend.jpg',
-    pinned: true,
+    map: 'current.plan.png',
+    legend: 'functional-zones.legend.png',
+    // pinned: true,
     old: true
   }
 ];
