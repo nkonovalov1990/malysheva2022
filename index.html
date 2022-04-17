@@ -13,9 +13,9 @@
   <!-- <link rel="icon" href="/favicon.ico" sizes="any"> -->
   <link rel="stylesheet" href="./style.css?2">
   
-  <link rel="preload" href="./images/with-BRT.png" as="image">
-  <link rel="preload" href="./images/without-BRT.png" as="image">
-  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="preload" href="./images/with-BRT.png" as="image"> -->
+  <!-- <link rel="preload" href="./images/without-BRT.png" as="image"> -->
+  <link rel="manifest" href="/manifest.json">
   
   <meta property="og:type" content="website">
   <meta property="og:title" content="Генплан Уфы">
@@ -30,16 +30,16 @@
 </head>
 
 <body>
-  <div class="loader-text" data-loader-text>Загрузка генплана...</div>
+  <div class="loader-text" data-loader-text>Загрузка карты...</div>
   <div class="loader" data-loader><div></div><div></div><div></div><div></div></div>
 
   <div class="map" data-map></div>
 
   <div class="map-switcher" data-switcher>
     <div class="map-toggle">
-      <button class="map-toggle__button" data-plan-toggle="current">Текущий генплан</button>
-      <button class="map-toggle__button map-toggle__button_active" data-plan-toggle="without-BRT">Новый генплан</button>
-      <button class="map-toggle__button" data-plan-toggle="with-BRT">Новый генплан</button>
+      <button class="map-toggle__button" data-plan-toggle="current">Исходный план</button>
+      <button class="map-toggle__button map-toggle__button_active" data-plan-toggle="without-BRT">Новый план без БРТ</button>
+      <button class="map-toggle__button" data-plan-toggle="with-BRT">Новый план с БРТ</button>
     </div>
   </div>
 
@@ -54,7 +54,7 @@
   </div>
 
   <!-- <a href="/genplan" class="contact-button" target="_blank" tabindex="0">Оставить предложение</a> -->
-  <a href="https://github.com/a-chabin/ekaterinburg-plan" class="about-link" target="_blank" tabindex="0">О разработчиках карты на GitHub</a>
+  <!-- <a href="https://github.com/a-chabin/ekaterinburg-plan" class="about-link" target="_blank" tabindex="0">О разработчиках карты на GitHub</a> -->
 
   <link rel="stylesheet" href="./assets/viewer.min.css">
   <script src="./assets/viewer.min.js"></script>
