@@ -184,7 +184,7 @@ const planSelect = query('[data-plan-select]');
 
 const setPlan = title => {
   const mapUrl = getImagePath(title, 'map');
-  // const legendUrl = getImagePath(title, 'legend');
+  const legendUrl = getImagePath(title, 'legend');
   const planImage = query('.viewer-canvas img');
 
   // legendImage.src = legendUrl;

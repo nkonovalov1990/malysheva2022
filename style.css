@@ -100,8 +100,7 @@ select:focus-visible {
 
 @media screen and (min-width: 768px) {
   .map-switcher {
-    flex-wrap: wrap;
-    flex-direction: column;
+    flex-wrap: nowrap;
     column-gap: 8px;
     transition: all .2s ease;
   }
@@ -140,6 +139,12 @@ select:focus-visible {
   background-color: white;
 }
 
+@media screen and (max-width: 768px) {
+  .map-toggle {
+    width: 290px;
+  }
+}
+
 @media screen and (min-width: 1200px) {
   .map-select {
     padding-top: 4px;
@@ -152,6 +157,8 @@ select:focus-visible {
 
 .map-toggle {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   top: 0;
   left: 50%;
   flex-grow: 1;
