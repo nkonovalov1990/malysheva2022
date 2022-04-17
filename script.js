@@ -21,7 +21,8 @@ const getImagePath = (planTitle, key) => {
 
 /* Initial images */
 
-const [planImage, legendImage] = ['map', 'legend']
+// const [planImage, legendImage] = ['map', 'legend']
+const [planImage, legendImage] = ['map']
   .map(key => [key, new Image()])
   .map(([key, img]) => {
     img.src = getImagePath(INITIAL_PLAN_TITLE, key);
