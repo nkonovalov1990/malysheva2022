@@ -1,17 +1,18 @@
 const PLAN_SIZE_MAXIMIZED = 10000;
 const VIEWER_ZOOM_RATIO = 0.5;
 const VIEWER_LOADING_TIMEOUT = 5000;
-// const YM_COUNTER = 86857246;
+// const YM_COUNTER = 85861499;
 
-const { title: INITIAL_PLAN_TITLE } = PLANS.find(x => x.default);
+const { title: DEFAULT_PLAN_TITLE } = PLANS.find(x => x.default);
 const { title: OLD_PLAN_TITLE } = PLANS.find(x => x.old);
 
 
 /* Utils */
 
 const query = selector => document.querySelector(selector);
+const queryAll = selector => document.querySelectorAll(selector);
 
-// const sendAnalytics = eventName => window.ym && ym(YM_COUNTER, 'reachGoal', eventName);
+const sendAnalytics = eventName => window.ym && ym(YM_COUNTER, 'reachGoal', eventName);
 
 const getImagePath = (planTitle, key) => {
   const image = PLANS.find(({ title }) => title === planTitle)[key];
@@ -21,16 +22,15 @@ const getImagePath = (planTitle, key) => {
 
 /* Initial images */
 
-// const [planImage, legendImage] = ['map', 'legend']
-const [planImage, legendImage] = ['map']
+const [planImage, legendImage] = ['map', 'legend']
   .map(key => [key, new Image()])
   .map(([key, img]) => {
-    img.src = getImagePath(INITIAL_PLAN_TITLE, key);
+    img.src = getImagePath(DEFAULT_PLAN_TITLE, key);
     return img;
   });
 
 query('[data-map]').appendChild(planImage);
-// query('[data-legend-menu]').appendChild(legendImage);
+query('[data-legend-menu]').appendChild(legendImage);
 
 
 /* Loader */
@@ -77,20 +77,20 @@ const viewer = new Viewer(planImage, {
     planImage.style.display = 'none';
     const image = query('.viewer-canvas img');
     image.style.willChange = 'transform, opacity';
-    // viewer.imageData.naturalWidth = maxSideSize;
-    // viewer.imageData.naturalHeight = maxSideSize * 1.384;
-    viewer.zoomTo(0.1);
+    viewer.imageData.naturalWidth = maxSideSize;
+    viewer.imageData.naturalHeight = maxSideSize;
+    viewer.zoomTo(2);
 
     // BUG Prevent viewerjs reset on window resize
     viewer.isShown = false;
-    
+
     const showViewerImage = () => {
       image.style.willChange = 'none';
       image.style.opacity = 1;
       viewer.options.transition = true;
       hideLoaderText();
     }
-    
+
     // Run if 'animationend' image event doesn't fired
     const loadingTimeout = setTimeout(() => {
       showViewerImage()
@@ -167,18 +167,14 @@ document.addEventListener('keyup', ({ shiftKey, key }) => {
 
 /* Legend */
 
-// const legend = query('[data-legend]');
-// const legendButton = query('[data-legend-button]');
-// const switcher = query('[data-switcher]');
+const legend = query('[data-legend]');
+const legendButton = query('[data-legend-button]');
+const switcher = query('[data-switcher]');
 
-// const setLegend = title => {
-//   legendImage.src = getImagePath(title, 'legend');
-// };
-
-// legendButton.addEventListener('click', () => {
-//   legend.classList.toggle('legend_open');
-//   switcher.classList.toggle('map-switcher_right');
-// });
+legendButton.addEventListener('click', () => {
+  legend.classList.toggle('legend_open');
+  switcher.classList.toggle('map-switcher_right');
+});
 
 
 /* Plans */
@@ -242,40 +238,3 @@ planSwitchers.forEach(button => {
     setPlan(planTitle);
   });
 });
-
-/* Plans */
-
-// const planToggleCurrent = query('[data-plan-toggle="current"]');
-// const planToggleNew = query('[data-plan-toggle="new"]');
-
-// const setPlan = title => {
-//   setLegend(title);
-
-//   const mapUrl = getImagePath(title, 'map');
-//   const image = query('.viewer-canvas img');
-
-//   setTimeout(() => {
-//     image.style.opacity = 0.2;
-//     image.src = mapUrl;
-//     showLoader();
-//   });
-
-//   image.onload = () => {
-//     image.style.opacity = 1;
-//     hideLoader();
-//   };
-
-//   sendAnalytics(title);
-// };
-
-// planToggleNew.addEventListener('click', () => {
-//   planToggleCurrent.classList.remove('map-toggle__button_active');
-//   planToggleNew.classList.add('map-toggle__button_active');
-//   setPlan(INITIAL_PLAN_TITLE);
-// });
-
-// planToggleCurrent.addEventListener('click', () => {
-//   planToggleNew.classList.remove('map-toggle__button_active');
-//   planToggleCurrent.classList.add('map-toggle__button_active');
-//   setPlan(OLD_PLAN_TITLE);
-// });
