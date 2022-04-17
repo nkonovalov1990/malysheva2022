@@ -30,7 +30,7 @@ const [planImage, legendImage] = ['map', 'legend']
   });
 
 query('[data-map]').appendChild(planImage);
-query('[data-legend-menu]').appendChild(legendImage);
+// query('[data-legend-menu]').appendChild(legendImage);
 
 
 /* Loader */
@@ -77,9 +77,9 @@ const viewer = new Viewer(planImage, {
     planImage.style.display = 'none';
     const image = query('.viewer-canvas img');
     image.style.willChange = 'transform, opacity';
-    viewer.imageData.naturalWidth = maxSideSize;
-    viewer.imageData.naturalHeight = maxSideSize;
-    viewer.zoomTo(2);
+    // viewer.imageData.naturalWidth = maxSideSize;
+    // viewer.imageData.naturalHeight = maxSideSize;
+    viewer.zoomTo(0.1);
 
     // BUG Prevent viewerjs reset on window resize
     viewer.isShown = false;
@@ -167,14 +167,14 @@ document.addEventListener('keyup', ({ shiftKey, key }) => {
 
 /* Legend */
 
-const legend = query('[data-legend]');
-const legendButton = query('[data-legend-button]');
-const switcher = query('[data-switcher]');
+// const legend = query('[data-legend]');
+// const legendButton = query('[data-legend-button]');
+// const switcher = query('[data-switcher]');
 
-legendButton.addEventListener('click', () => {
-  legend.classList.toggle('legend_open');
-  switcher.classList.toggle('map-switcher_right');
-});
+// legendButton.addEventListener('click', () => {
+//   legend.classList.toggle('legend_open');
+//   switcher.classList.toggle('map-switcher_right');
+// });
 
 
 /* Plans */
@@ -212,12 +212,12 @@ PLANS.filter(({ pinned }) => !pinned)
   })
   .forEach(option => planSelect.appendChild(option));
 
-planSelect.value = DEFAULT_PLAN_TITLE;
-planSelect.addEventListener('change', ({ target }) => {
-  // Remove focus-visible on select after click
-  planSelect.blur();
-  setPlan(target.value);
-});
+// planSelect.value = DEFAULT_PLAN_TITLE;
+// planSelect.addEventListener('change', ({ target }) => {
+//   // Remove focus-visible on select after click
+//   planSelect.blur();
+//   setPlan(target.value);
+// });
 
 planSwitchers.forEach(button => {
   const unactiveSwitchers = () => planSwitchers.forEach(
@@ -232,8 +232,8 @@ planSwitchers.forEach(button => {
     button.classList.add('map-toggle__button_active');
 
 
-    planSelect.disabled = isPlanOld;
-    planSelect.value = DEFAULT_PLAN_TITLE;
+    // planSelect.disabled = isPlanOld;
+    // planSelect.value = DEFAULT_PLAN_TITLE;
     
     setPlan(planTitle);
   });
