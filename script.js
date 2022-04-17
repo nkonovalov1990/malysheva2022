@@ -29,7 +29,7 @@ const [planImage, legendImage] = ['map', 'legend']
   });
 
 query('[data-map]').appendChild(planImage);
-query('[data-legend-menu]').appendChild(legendImage);
+// query('[data-legend-menu]').appendChild(legendImage);
 
 
 /* Loader */
