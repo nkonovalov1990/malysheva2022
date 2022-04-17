@@ -93,14 +93,15 @@ select:focus-visible {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 300px;
+  /* width: 300px; */
   transform: translate3d(-50%, 0, 0);
   row-gap: 8px;
 }
 
 @media screen and (min-width: 768px) {
   .map-switcher {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    flex-direction: column;
     column-gap: 8px;
     transition: all .2s ease;
   }
