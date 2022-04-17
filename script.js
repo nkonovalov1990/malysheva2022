@@ -166,18 +166,18 @@ document.addEventListener('keyup', ({ shiftKey, key }) => {
 
 /* Legend */
 
-const legend = query('[data-legend]');
-const legendButton = query('[data-legend-button]');
-const switcher = query('[data-switcher]');
+// const legend = query('[data-legend]');
+// const legendButton = query('[data-legend-button]');
+// const switcher = query('[data-switcher]');
 
-const setLegend = title => {
-  legendImage.src = getImagePath(title, 'legend');
-};
+// const setLegend = title => {
+//   legendImage.src = getImagePath(title, 'legend');
+// };
 
-legendButton.addEventListener('click', () => {
-  legend.classList.toggle('legend_open');
-  switcher.classList.toggle('map-switcher_right');
-});
+// legendButton.addEventListener('click', () => {
+//   legend.classList.toggle('legend_open');
+//   switcher.classList.toggle('map-switcher_right');
+// });
 
 
 /* Plans */
