@@ -12,9 +12,9 @@
  
   <!-- <link rel="icon" href="/favicon.ico" sizes="any"> -->
   <link rel="stylesheet" href="./style.css?2">
-  
-  <!-- <link rel="preload" href="./images/with-BRT.png" as="image"> -->
-  <!-- <link rel="preload" href="./images/without-BRT.png" as="image"> -->
+  <!-- <link rel="preload" href="./images/current.png" as="image">   -->
+  <link rel="preload" href="./images/with-BRT.png" as="image">
+  <link rel="preload" href="./images/without-BRT.png" as="image">
   <!-- <link rel="manifest" href="/manifest.json"> -->
   
   <meta property="og:type" content="website">
@@ -46,12 +46,16 @@
         Исходный план
       </button>
     </div>
+
+    <select class="map-select" data-plan-select style="display: none;">
+      <option disabled>Выберите план</option>
+    </select>
   </div>
 
-  <!-- <aside class="legend" data-legend>
+  <aside class="legend" data-legend style="display: none;">
     <div class="legend__menu" data-legend-menu></div>
     <button class="legend__button" data-legend-button>Легенда</button>
-  </aside> -->
+  </aside>
 
   <div class="zoom">
     <button class="zoom__button zoom__button_plus" title="Увеличить масштаб (+)" data-plan-zoom-in>&#43;</button>
