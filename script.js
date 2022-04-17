@@ -77,10 +77,9 @@ const viewer = new Viewer(planImage, {
     planImage.style.display = 'none';
     const image = query('.viewer-canvas img');
     image.style.willChange = 'transform, opacity';
-    viewer.imageData.naturalWidth = maxSideSize;
+    // viewer.imageData.naturalWidth = maxSideSize;
     // viewer.imageData.naturalHeight = maxSideSize * 1.384;
-    viewer.imageData.naturalHeight = maxSideSize;
-    viewer.zoomTo(2);
+    viewer.zoomTo(0.5);
 
     // BUG Prevent viewerjs reset on window resize
     viewer.isShown = false;
