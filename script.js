@@ -1,7 +1,7 @@
-const PLAN_SIZE_MAXIMIZED = 14000;
-const VIEWER_ZOOM_RATIO = 0.6;
+const PLAN_SIZE_MAXIMIZED = 10000;
+const VIEWER_ZOOM_RATIO = 0.5;
 const VIEWER_LOADING_TIMEOUT = 5000;
-const YM_COUNTER = 86857246;
+// const YM_COUNTER = 86857246;
 
 const { title: INITIAL_PLAN_TITLE } = PLANS.find(x => x.default);
 const { title: OLD_PLAN_TITLE } = PLANS.find(x => x.old);
@@ -11,7 +11,7 @@ const { title: OLD_PLAN_TITLE } = PLANS.find(x => x.old);
 
 const query = selector => document.querySelector(selector);
 
-const sendAnalytics = eventName => window.ym && ym(YM_COUNTER, 'reachGoal', eventName);
+// const sendAnalytics = eventName => window.ym && ym(YM_COUNTER, 'reachGoal', eventName);
 
 const getImagePath = (planTitle, key) => {
   const image = PLANS.find(({ title }) => title === planTitle)[key];
@@ -68,7 +68,7 @@ const viewer = new Viewer(planImage, {
   transition: false,
   zoomRatio: VIEWER_ZOOM_RATIO,
   maxZoomRatio: PLAN_SIZE_MAXIMIZED / maxSideSize,
-  minZoomRatio,
+  minZoomRatio: 0.1,
   ready() {
     hideLoader();
     showLoaderText();
@@ -79,7 +79,7 @@ const viewer = new Viewer(planImage, {
     image.style.willChange = 'transform, opacity';
     // viewer.imageData.naturalWidth = maxSideSize;
     // viewer.imageData.naturalHeight = maxSideSize * 1.384;
-    viewer.zoomTo(0.5);
+    viewer.zoomTo(0.1);
 
     // BUG Prevent viewerjs reset on window resize
     viewer.isShown = false;
@@ -183,37 +183,99 @@ document.addEventListener('keyup', ({ shiftKey, key }) => {
 
 /* Plans */
 
-const planToggleCurrent = query('[data-plan-toggle="current"]');
-const planToggleNew = query('[data-plan-toggle="new"]');
+const planSwitchers = queryAll('[data-plan-switcher]');
+const planSelect = query('[data-plan-select]');
 
 const setPlan = title => {
-  setLegend(title);
-
   const mapUrl = getImagePath(title, 'map');
-  const image = query('.viewer-canvas img');
+  const legendUrl = getImagePath(title, 'legend');
+  const planImage = query('.viewer-canvas img');
+
+  legendImage.src = legendUrl;
 
   setTimeout(() => {
-    image.style.opacity = 0.2;
-    image.src = mapUrl;
+    planImage.style.opacity = 0.2;
+    planImage.src = mapUrl;
     showLoader();
   });
 
-  image.onload = () => {
-    image.style.opacity = 1;
+  planImage.onload = () => {
+    planImage.style.opacity = 1;
     hideLoader();
   };
 
   sendAnalytics(title);
 };
 
-planToggleNew.addEventListener('click', () => {
-  planToggleCurrent.classList.remove('map-toggle__button_active');
-  planToggleNew.classList.add('map-toggle__button_active');
-  setPlan(INITIAL_PLAN_TITLE);
+PLANS.filter(({ pinned }) => !pinned)
+  .map(plan => {
+    const option = document.createElement('option');
+    option.text = plan.title;
+    option.value = plan.title;
+    return option;
+  })
+  .forEach(option => planSelect.appendChild(option));
+
+planSelect.value = DEFAULT_PLAN_TITLE;
+planSelect.addEventListener('change', ({ target }) => {
+  // Remove focus-visible on select after click
+  planSelect.blur();
+  setPlan(target.value);
 });
 
-planToggleCurrent.addEventListener('click', () => {
-  planToggleNew.classList.remove('map-toggle__button_active');
-  planToggleCurrent.classList.add('map-toggle__button_active');
-  setPlan(OLD_PLAN_TITLE);
+planSwitchers.forEach(button => {
+  const unactiveSwitchers = () => planSwitchers.forEach(
+    button => button.classList.remove('map-toggle__button_active')
+  );
+
+  button.addEventListener('click', () => {
+    const planTitle = button.dataset.planSwitcher;
+    const isPlanOld = planTitle === OLD_PLAN_TITLE;
+
+    unactiveSwitchers();
+    button.classList.add('map-toggle__button_active');
+
+
+    planSelect.disabled = isPlanOld;
+    planSelect.value = DEFAULT_PLAN_TITLE;
+    
+    setPlan(planTitle);
+  });
 });
+
+/* Plans */
+
+// const planToggleCurrent = query('[data-plan-toggle="current"]');
+// const planToggleNew = query('[data-plan-toggle="new"]');
+
+// const setPlan = title => {
+//   setLegend(title);
+
+//   const mapUrl = getImagePath(title, 'map');
+//   const image = query('.viewer-canvas img');
+
+//   setTimeout(() => {
+//     image.style.opacity = 0.2;
+//     image.src = mapUrl;
+//     showLoader();
+//   });
+
+//   image.onload = () => {
+//     image.style.opacity = 1;
+//     hideLoader();
+//   };
+
+//   sendAnalytics(title);
+// };
+
+// planToggleNew.addEventListener('click', () => {
+//   planToggleCurrent.classList.remove('map-toggle__button_active');
+//   planToggleNew.classList.add('map-toggle__button_active');
+//   setPlan(INITIAL_PLAN_TITLE);
+// });
+
+// planToggleCurrent.addEventListener('click', () => {
+//   planToggleNew.classList.remove('map-toggle__button_active');
+//   planToggleCurrent.classList.add('map-toggle__button_active');
+//   setPlan(OLD_PLAN_TITLE);
+// });
