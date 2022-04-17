@@ -12,7 +12,7 @@ const { title: OLD_PLAN_TITLE } = PLANS.find(x => x.old);
 const query = selector => document.querySelector(selector);
 const queryAll = selector => document.querySelectorAll(selector);
 
-const sendAnalytics = eventName => window.ym && ym(YM_COUNTER, 'reachGoal', eventName);
+// const sendAnalytics = eventName => window.ym && ym(YM_COUNTER, 'reachGoal', eventName);
 
 const getImagePath = (planTitle, key) => {
   const image = PLANS.find(({ title }) => title === planTitle)[key];
