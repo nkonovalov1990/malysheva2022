@@ -234,6 +234,6 @@ planSwitchers.forEach(button => {
     planSelect.disabled = isPlanOld;
     planSelect.value = DEFAULT_PLAN_TITLE;
     
-    // setPlan(planTitle);
+    setPlan(planTitle);
   });
 });
