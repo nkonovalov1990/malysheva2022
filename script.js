@@ -180,28 +180,28 @@ document.addEventListener('keyup', ({ shiftKey, key }) => {
 /* Plans */
 
 const planSwitchers = queryAll('[data-plan-switcher]');
-// const planSelect = query('[data-plan-select]');
+const planSelect = query('[data-plan-select]');
 
-// const setPlan = title => {
-//   // const mapUrl = getImagePath(title, 'map');
-//   // const legendUrl = getImagePath(title, 'legend');
-//   // const planImage = query('.viewer-canvas img');
+const setPlan = title => {
+  const mapUrl = getImagePath(title, 'map');
+  // const legendUrl = getImagePath(title, 'legend');
+  const planImage = query('.viewer-canvas img');
 
-//   // legendImage.src = legendUrl;
+  // legendImage.src = legendUrl;
 
-//   setTimeout(() => {
-//     planImage.style.opacity = 0.2;
-//     planImage.src = mapUrl;
-//     showLoader();
-//   });
+  setTimeout(() => {
+    planImage.style.opacity = 0.2;
+    planImage.src = mapUrl;
+    showLoader();
+  });
 
-//   planImage.onload = () => {
-//     planImage.style.opacity = 1;
-//     hideLoader();
-//   };
+  planImage.onload = () => {
+    planImage.style.opacity = 1;
+    hideLoader();
+  };
 
-//   sendAnalytics(title);
-// };
+  // sendAnalytics(title);
+};
 
 PLANS.filter(({ pinned }) => !pinned)
   .map(plan => {
